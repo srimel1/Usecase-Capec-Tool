@@ -110,6 +110,6 @@ public class UseCaseController {
         return "redirect:/usecases/show/" + usecase.getId();
     }
 
-    
+
 
 }
