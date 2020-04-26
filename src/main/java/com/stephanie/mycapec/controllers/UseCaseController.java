@@ -52,11 +52,11 @@ public class UseCaseController {
     }
 
     @RequestMapping("/usecases/save")
-    public String save(@RequestParam String title, @RequestParam String content, @RequestParam String mitigation) {
+    public String save(@RequestParam String title, @RequestParam String content/*, @RequestParam String mitigation*/) {
         UseCase usecase = new UseCase();
         usecase.setTitle(title);
         usecase.setContent(content);
-        usecase.setMitigation(mitigation);
+        //usecase.setMitigation(mitigation);
         usecase.setUpdated(new Date());
         useCaseRepository.save(usecase);
 
@@ -99,12 +99,12 @@ public class UseCaseController {
     }
 
     @RequestMapping("/usecases/update")
-    public String update(@RequestParam Long id, @RequestParam String title, @RequestParam String content, @RequestParam String mitigation) {
+    public String update(@RequestParam Long id, @RequestParam String title, @RequestParam String content/*, @RequestParam String mitigation*/) {
         UseCase usecase = useCaseRepository.findById(id).orElse(null);
         usecase.setTitle(title);
         usecase.setContent(content);
         usecase.setUpdated(new Date());
-        usecase.setMitigation((mitigation));
+        //usecase.setMitigation((mitigation));
         useCaseRepository.save(usecase);
 
         return "redirect:/usecases/show/" + usecase.getId();

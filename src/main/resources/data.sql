@@ -21,3 +21,4 @@ insert INTO role (id, role) values
                                    (1,'ADMIN');
 
 
+

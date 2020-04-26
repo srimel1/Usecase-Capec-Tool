@@ -19,8 +19,8 @@
             <dd th:text="${usecase.content}"></dd>
             <dt>Updated</dt>
             <dd th:text="${new java.text.SimpleDateFormat('dd MMM yyyy').format(usecase.updated)}"></dd>
-            <dt>Mitigation</dt>
-            <dd th:text="${usecase.mitigation}"></dd>
+<!--            <dt>Mitigation</dt>-->
+<!--            <dd th:text="${usecase.mitigation}"></dd>-->
         </dl>
         <form action="/usecases/delete">
             <input type="hidden" name="id" th:value="${usecase.id}" />

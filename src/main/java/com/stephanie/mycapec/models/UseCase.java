@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="apdb")
+@Table(name="usecase")
 public class UseCase {
 
     @Id
@@ -31,12 +31,12 @@ public class UseCase {
         // TODO Auto-generated constructor stub
     }
 
-    public UseCase(String title, String content, Date updated, String mitigation) {
+    public UseCase(String title, String content, Date updated/*, String mitigation*/) {
         super();
         this.title = title;
         this.content = content;
         this.updated = updated;
-        this.mitigation = mitigation;
+        //this.mitigation = mitigation;
     }
 
     public Long getId() {
