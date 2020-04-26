@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name="usecase-table")
+@Table(name="apdb")
 public class UseCase {
 
     @Id

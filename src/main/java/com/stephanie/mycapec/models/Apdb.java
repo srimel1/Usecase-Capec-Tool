@@ -14,9 +14,6 @@ public class Apdb implements Serializable {
     @Column(name = "Abstraction", nullable = false)
     private String Abstraction;
 
-    @Column(name = "Alternate_Terms")
-    private String alternateTerms;
-
     @Column(name = "Consequences")
     private String Consequences;
 
@@ -81,14 +78,6 @@ public class Apdb implements Serializable {
 
     public void setAbstraction(String Abstraction) {
         this.Abstraction = Abstraction;
-    }
-
-    public String getAlternateTerms() {
-        return alternateTerms;
-    }
-
-    public void setAlternateTerms(String alternateTerms) {
-        this.alternateTerms = alternateTerms;
     }
 
     public String getConsequences() {
@@ -245,7 +234,6 @@ public class Apdb implements Serializable {
 
     public String toString() {
         return "Apdb{Abstraction=" + Abstraction +
-                ", alternateTerms=" + alternateTerms +
                 ", Consequences=" + Consequences +
                 ", Description=" + Description +
                 ", exampleInstances=" + exampleInstances +

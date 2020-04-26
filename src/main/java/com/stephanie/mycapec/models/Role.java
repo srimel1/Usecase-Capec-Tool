@@ -16,10 +16,19 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String role;
 
-    @ManyToMany(targetEntity= User.class)
+    public Role(){
+    }
+
+    public Role(Long id, String role) {
+        this.id = id;
+        this.role = role;
+    }
+
+
+
+    @ManyToMany(targetEntity = User.class)
     //@ManyToMany(mappedBy = "role")
     private Set<User> users;
 

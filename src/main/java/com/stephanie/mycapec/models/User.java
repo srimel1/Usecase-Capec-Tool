@@ -1,43 +1,40 @@
 package com.stephanie.mycapec.models;
-
-import java.util.Set;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.Set;
+import java.util.Date;
+import javax.persistence.*;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name = "user")
+@Table(name = "users")
 public class User {
-    public User() {
-    }
-    public User(Long id, String email, String password, String fullname, boolean enabled){
-        this.id = id;
-        this.email=email;
-        this.password=password;
-        this.fullname=fullname;
-        this.enabled=enabled;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "fullname")
     private String fullname;
 
+    @Column(name = "enabled")
     private boolean enabled;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles;
 
