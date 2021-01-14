@@ -1,7 +1,14 @@
 package com.stephanie.mycapec.controllers;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.logging.Logger;
 
+import com.stephanie.mycapec.models.Apdb;
+import com.stephanie.mycapec.repositories.ApdbRepository;
+import com.stephanie.mycapec.repositories.UserRepository;
+import groovy.util.logging.Log;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +26,9 @@ import com.stephanie.mycapec.services.CustomUserDetailsService;
 
 @Controller
 public class UseCaseController {
+//    private static final Logger logger = (Logger) LoggerFactory.getLogger(UseCaseController.class);
+
+
 
     @Autowired
     private CustomUserDetailsService userService;
@@ -26,8 +36,17 @@ public class UseCaseController {
     @Autowired
     private UseCaseRepository useCaseRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired ApdbRepository apdbRepository;
+
+
+
     @RequestMapping(value = "/usecases", method = RequestMethod.GET)
     public ModelAndView usecases() {
+        System.out.println("Hi this is a test");
+
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
@@ -44,6 +63,7 @@ public class UseCaseController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
+
         modelAndView.addObject("currentUser", user);
         modelAndView.addObject("fullName", "Welcome " + user.getFullname());
         modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
@@ -56,7 +76,18 @@ public class UseCaseController {
         UseCase usecase = new UseCase();
         usecase.setTitle(title);
         usecase.setContent(content);
-        //usecase.setMitigation(mitigation);
+//        Collection<User> test = userRepository.findByEnabled();
+//        String mitigation = apdbRepository.findApdbByID(1);
+//        String mitigation = mit.getMitigations().toString();
+
+
+//        String mitigation = test.toString();
+//        String mitigation = "1";
+
+        Apdb apdb = apdbRepository.findApdbByID(1);
+        String mitigation = apdb.getMitigations();
+
+        usecase.setMitigation(mitigation);
         usecase.setUpdated(new Date());
         useCaseRepository.save(usecase);
 
@@ -80,7 +111,6 @@ public class UseCaseController {
     public String delete(@RequestParam Long id) {
         UseCase usecase = useCaseRepository.findById(id).orElse(null);
         useCaseRepository.delete(usecase);
-
         return "redirect:/usecases";
     }
 
@@ -101,15 +131,30 @@ public class UseCaseController {
     @RequestMapping("/usecases/update")
     public String update(@RequestParam Long id, @RequestParam String title, @RequestParam String content/*, @RequestParam String mitigation*/) {
         UseCase usecase = useCaseRepository.findById(id).orElse(null);
+//        Collection<User> test = userRepository.findByEnabled();
+//        String mitigation = test.toString();
         usecase.setTitle(title);
         usecase.setContent(content);
         usecase.setUpdated(new Date());
-        //usecase.setMitigation((mitigation));
+//        String mitigation = "1";
+        Apdb apdb = apdbRepository.findApdbByID(1);
+        String mitigation = apdb.getMitigations();
+        //String mitigation = mit.getMitigations().toString();
+//        String mitigation = apdbRepository.findUserByStatus(1);
+        usecase.setMitigation(mitigation);
         useCaseRepository.save(usecase);
 
         return "redirect:/usecases/show/" + usecase.getId();
     }
 
 
+
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+//    public Collection<User> findUserByEnabled(){
+//        return userRepository.findByEnabled();
+//    }
 
 }

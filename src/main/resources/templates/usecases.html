@@ -29,7 +29,7 @@
                     <td><a th:text="${usecase.title}" th:href="@{'/usecases/show/' + ${usecase.id}}"></a></td>
                     <td th:text="${usecase.content}"></td>
                     <td th:text="${new java.text.SimpleDateFormat('dd MMM yyyy').format(usecase.updated)}"></td>
-<!--                    <td th:text="${usecase.mitigation}"></td>-->
+                    <td th:text="${usecase.mitigation}"></td>
 
                 </tr>
                 </tbody>
