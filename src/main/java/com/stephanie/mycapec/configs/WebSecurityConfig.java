@@ -54,12 +54,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/").hasAuthority("ADMIN").antMatchers("/h2/console").permitAll()
-                .antMatchers("/login").permitAll().antMatchers("/signup").permitAll().antMatchers("/notes")
-                .hasAuthority("ADMIN").antMatchers("/notes/**").hasAuthority("ADMIN").anyRequest().authenticated().and()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/oauth/token").permitAll()
+                .antMatchers("/signup").permitAll().antMatchers("/usecases")
+                .hasAuthority("ADMIN").antMatchers("/usecases/**").hasAuthority("ADMIN").anyRequest().authenticated().and()
                 .csrf().disable().formLogin().successHandler(customizeAuthenticationSuccessHandler).loginPage("/login")
                 .failureUrl("/login?error=true").usernameParameter("email").passwordParameter("password").and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").and()
-                .exceptionHandling();
+                .exceptionHandling()
+        ;
     }
 
     @Override
