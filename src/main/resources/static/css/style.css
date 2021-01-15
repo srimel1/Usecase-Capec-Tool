@@ -1,16 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 html,
 body {
     height: 100%;
 }
 
 body {
+    font-family: 'Permanent Marker','Roboto', 'DejaVu Sans', Arial, Helvetica, sans-serif;
     display: -ms-flexbox;
     display: flex;
+    color: black;
     -ms-flex-align: center;
     align-items: center;
     padding-top: 40px;
     padding-bottom: 40px;
-    background-color: #f5f5f5;
+    background-color: #b5b5b5;
 }
 
 .form-signin {

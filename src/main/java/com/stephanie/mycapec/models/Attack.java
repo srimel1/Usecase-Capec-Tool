@@ -6,9 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "apdb")
+@Table(name = "attack")
 @Entity
-public class Apdb implements Serializable {
+public class Attack implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(name = "Abstraction", nullable = false)

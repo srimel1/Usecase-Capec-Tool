@@ -1,14 +1,10 @@
 package com.stephanie.mycapec.controllers;
 
-import java.util.Collection;
 import java.util.Date;
-import java.util.logging.Logger;
 
-import com.stephanie.mycapec.models.Apdb;
-import com.stephanie.mycapec.repositories.ApdbRepository;
+import com.stephanie.mycapec.models.Attack;
+import com.stephanie.mycapec.repositories.AttackRepository;
 import com.stephanie.mycapec.repositories.UserRepository;
-import groovy.util.logging.Log;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,7 +35,8 @@ public class UseCaseController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired ApdbRepository apdbRepository;
+    @Autowired
+    AttackRepository attackRepository;
 
 
 
@@ -84,8 +81,8 @@ public class UseCaseController {
 //        String mitigation = test.toString();
 //        String mitigation = "1";
 
-        Apdb apdb = apdbRepository.findApdbByID(1);
-        String mitigation = apdb.getMitigations();
+        Attack attack = attackRepository.findApdbByID(1);
+        String mitigation = attack.getMitigations();
 
         usecase.setMitigation(mitigation);
         usecase.setUpdated(new Date());
@@ -136,9 +133,23 @@ public class UseCaseController {
         usecase.setTitle(title);
         usecase.setContent(content);
         usecase.setUpdated(new Date());
+//
+//        List<Attack> results = apdbRepository.findByNameContaining("i");
+//        Attack ap = results.get(1);
+
+
 //        String mitigation = "1";
-        Apdb apdb = apdbRepository.findApdbByID(1);
-        String mitigation = apdb.getMitigations();
+//        Apdb ap = apdbRepository.findApdbByName("Blue Boxing");
+        Attack attack = attackRepository.findApdbByID(5);
+//        Apdb ap = apdbRepository.findApdbByName("Blue Boxing");
+
+
+//        Apdb ap = apdbRepository.findApdbByName("Blue Boxing");
+        String mitigation = attack.getMitigations();
+
+//        Apdb ap = apdbRepository.findApdbByName("login");
+//        String mit = ap.getMitigations().toString();
+
         //String mitigation = mit.getMitigations().toString();
 //        String mitigation = apdbRepository.findUserByStatus(1);
         usecase.setMitigation(mitigation);
